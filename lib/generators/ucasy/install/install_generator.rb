@@ -11,10 +11,10 @@ module Ucasy
     private
 
     def use_case_path
-      Rails.root.join("app/#{GENERATOR_FOLDER_NAME}/use_case_base.rb")
+      Rails.root.join("app/#{generator_folder_name}/use_case_base.rb")
     end
 
-    def GENERATOR_FOLDER_NAME
+    def generator_folder_name
       return Ucasy::GENERATOR_FOLDER_NAME if defined?(Ucasy::GENERATOR_FOLDER_NAME)
 
       Ucasy::DEFAULT_GENERATOR_FOLDER_NAME

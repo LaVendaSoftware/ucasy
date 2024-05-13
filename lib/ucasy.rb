@@ -1,4 +1,5 @@
 require_relative "ucasy/version"
+require_relative "ucasy/callable"
 require_relative "ucasy/base"
 require_relative "ucasy/flow"
 

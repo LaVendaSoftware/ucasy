@@ -3,6 +3,8 @@ require_relative "failure"
 
 module Ucasy
   class Base
+    include Ucasy::Callable
+
     class << self
       def call(context)
         new(context).perform
@@ -32,10 +34,6 @@ module Ucasy
       self
     rescue Failure
       self
-    end
-
-    def call
-      raise StandardError, "You must implement call method"
     end
 
     private
