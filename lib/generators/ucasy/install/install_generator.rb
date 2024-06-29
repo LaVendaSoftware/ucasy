@@ -5,7 +5,6 @@ module Ucasy
     desc "Generates a application use case base."
     def create_use_case_base
       copy_file "use_case_base.rb", use_case_path
-      copy_file ".rspec", Rails.root.join(".rspec")
     end
 
     private
