@@ -2,9 +2,7 @@ require_relative "context"
 require_relative "failure"
 
 module Ucasy
-  class Base
-    include Ucasy::Callable
-
+  class Base < Ucasy::Callable
     class << self
       def call(context)
         new(context).perform
