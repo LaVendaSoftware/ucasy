@@ -25,9 +25,9 @@ module Ucasy
       return if failure?
 
       validate_context!
-      before if respond_to?(:before)
-      call
-      after if respond_to?(:after)
+      try(:before) if success?
+      call if success?
+      try(:after) if success?
 
       self
     rescue Failure
