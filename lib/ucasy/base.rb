@@ -1,5 +1,6 @@
 require_relative "context"
 require_relative "failure"
+require_relative "validators/required_attributes"
 
 module Ucasy
   class Base < Ucasy::Callable
@@ -24,7 +25,7 @@ module Ucasy
     def perform
       return if failure?
 
-      validate_context!
+      validate_required_attributes!
       try(:before) if success?
       call if success?
       try(:after) if success?
@@ -38,12 +39,8 @@ module Ucasy
 
     attr_reader :context
 
-    def validate_context!
-      self.class._required_attributes.each do |attribute|
-        next if context.respond_to?(attribute)
-
-        raise ArgumentError, "You must set '#{attribute}' variable in '#{self.class}'"
-      end
+    def validate_required_attributes!
+      Validators::RequiredAttributes.call(context, self.class._required_attributes)
     end
 
     def method_missing(method_name, *, &block)
