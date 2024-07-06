@@ -42,7 +42,7 @@ module Ucasy
       self.class._required_attributes.each do |attribute|
         next if context.respond_to?(attribute)
 
-        raise ArgumentError, "You must set '#{attribute}' variable"
+        raise ArgumentError, "You must set '#{attribute}' variable in '#{self.class}'"
       end
     end
 
