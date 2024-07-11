@@ -7,7 +7,7 @@ module Ucasy
     end
 
     def call
-      raise NotImplementedError, "You must implement call method"
+      raise NotImplementedError, "You must implement #call method in #{self.class}"
     end
   end
 end

@@ -40,7 +40,7 @@ module Ucasy
     attr_reader :context
 
     def validate_required_attributes!
-      Validators::RequiredAttributes.call(context, self.class._required_attributes)
+      Validators::RequiredAttributes.call(context, self.class._required_attributes, self.class)
     end
 
     def method_missing(method_name, *, &block)
