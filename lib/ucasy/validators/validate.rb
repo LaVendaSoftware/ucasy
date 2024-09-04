@@ -12,11 +12,11 @@ module Ucasy::Validators
     end
 
     def valid?
-      !invalid?
+      @validator&.valid? || false
     end
 
     def invalid?
-      @validator&.errors || true
+      !valid?
     end
 
     def errors

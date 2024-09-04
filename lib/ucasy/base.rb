@@ -10,12 +10,11 @@ module Ucasy
         new(context).perform
       end
 
-      def validate(validator_class, validatable_attributes = nil)
+      def validate(validator_class)
         @validator_class = validator_class
-        @validatable_attributes = validatable_attributes
       end
 
-      attr_reader :validator_class, :validatable_attributes
+      attr_reader :validator_class
 
       def required_attributes(*attributes)
         @required_attributes = attributes
@@ -52,15 +51,11 @@ module Ucasy
     def validate!
       return if self.class.validator_class.blank?
 
-      validator = Validators::Validate.call(*validate_params)
+      validator = Validators::Validate.call(self.class.validator_class, context.to_h)
 
       return if validator.valid?
 
       context.fail!(status: :unprocessable_entity, errors: validator.errors)
-    end
-
-    def validate_params
-      [self.class.validator_class, try(self.class.validatable_attributes) || context]
     end
 
     def validate_required_attributes!
