@@ -53,9 +53,13 @@ module Ucasy
 
       validator = Validators::Validate.call(self.class.validator_class, context.to_h)
 
-      return if validator.valid?
-
-      context.fail!(status: :unprocessable_entity, errors: validator.errors)
+      if validator.valid?
+        validator.to_context.each do |key, value|
+          context.send(:"#{key}=", value)
+        end
+      else
+        context.fail!(status: :unprocessable_entity, message: validator.message, errors: validator.errors)
+      end
     end
 
     def validate_required_attributes!

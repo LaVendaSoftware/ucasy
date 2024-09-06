@@ -11,6 +11,14 @@ module Ucasy::Validators
       self
     end
 
+    def message
+      @validator.try(:message_error)
+    end
+
+    def to_context
+      @validator.try(:to_context) || {}
+    end
+
     def valid?
       @validator&.valid? || false
     end
