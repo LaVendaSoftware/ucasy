@@ -5,7 +5,7 @@ require_relative "validators/required_attributes"
 module Ucasy
   class Base < Ucasy::Callable
     class << self
-      def call(context)
+      def call(context = {})
         new(context).perform
       end
 
