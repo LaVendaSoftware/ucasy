@@ -9,14 +9,36 @@ module Ucasy
       def _service_classes
         @service_classes || []
       end
+
+      def transactional
+        @transactional = true
+      end
+
+      def transactional?
+        @transactional || false
+      end
     end
 
     def call
-      self.class._service_classes.each do |service_class|
-        service_class.call(context)
+      if self.class.transactional?
+        ActiveRecord::Base.transaction { execute_services }
+      else
+        execute_services
       end
 
       self
+    end
+
+    private
+
+    def execute_services
+      self.class._service_classes.each do |service_class|
+        service_class.call(context)
+
+        next unless self.class.transactional?
+
+        raise ActiveRecord::Rollback if failure?
+      end
     end
   end
 end
