@@ -7,7 +7,7 @@ Description soon!
 Add this line to your application's Gemfile:
 
 ```ru
-gem "ucasy", "~> 0.0.1"
+gem "ucasy", "~> 0.2.0"
 ```
 
 And then execute:
