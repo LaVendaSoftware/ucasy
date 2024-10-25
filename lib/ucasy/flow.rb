@@ -1,13 +1,12 @@
 module Ucasy
   class Flow < Base
     class << self
-      def service_classes(*service_classes)
-        @service_classes = service_classes
+      def flow(*ucases)
+        @ucases = ucases
       end
-      alias_method :flow, :service_classes
 
-      def _service_classes
-        @service_classes || []
+      def ucases
+        @ucases || []
       end
 
       def transactional
@@ -21,9 +20,9 @@ module Ucasy
 
     def call
       if self.class.transactional?
-        ActiveRecord::Base.transaction { execute_services }
+        ActiveRecord::Base.transaction { execute }
       else
-        execute_services
+        execute
       end
 
       self
@@ -31,8 +30,8 @@ module Ucasy
 
     private
 
-    def execute_services
-      self.class._service_classes.each do |service_class|
+    def execute
+      self.class.ucases.each do |ucase|
         service_class.call(context)
 
         next unless self.class.transactional?
