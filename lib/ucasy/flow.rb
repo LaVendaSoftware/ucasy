@@ -1,22 +1,43 @@
 module Ucasy
   class Flow < Base
     class << self
-      def service_classes(*service_classes)
-        @service_classes = service_classes
+      def flow(*ucases)
+        @ucases = ucases
       end
-      alias_method :flow, :service_classes
 
-      def _service_classes
-        @service_classes || []
+      def ucases
+        @ucases || []
+      end
+
+      def transactional
+        @transactional = true
+      end
+
+      def transactional?
+        @transactional || false
       end
     end
 
     def call
-      self.class._service_classes.each do |service_class|
-        service_class.call(context)
+      if self.class.transactional?
+        ActiveRecord::Base.transaction { execute }
+      else
+        execute
       end
 
       self
+    end
+
+    private
+
+    def execute
+      self.class.ucases.each do |ucase|
+        service_class.call(context)
+
+        next unless self.class.transactional?
+
+        raise ActiveRecord::Rollback if failure?
+      end
     end
   end
 end
