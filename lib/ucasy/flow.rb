@@ -32,7 +32,7 @@ module Ucasy
 
     def execute
       self.class.ucases.each do |ucase|
-        service_class.call(context)
+        ucase.call(context)
 
         next unless self.class.transactional?
 
