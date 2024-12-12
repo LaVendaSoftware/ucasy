@@ -102,6 +102,15 @@ class AuthenticateUser < UseCaseBase
 end
 ```
 
+You can filter attributes. Only `context.login` and  `context.password` will be validated in example below:
+
+```rb
+class AuthenticateUser < UseCaseBase
+  validate(AuthenticateUserValidation, :login, :password)
+  ...
+end
+```
+
 Adds a validation
 
 ```rb
