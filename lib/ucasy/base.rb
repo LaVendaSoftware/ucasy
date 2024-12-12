@@ -10,11 +10,12 @@ module Ucasy
         new(context).perform
       end
 
-      def validate(validator_class)
+      def validate(validator_class, *validator_attribute_keys)
         @validator_class = validator_class
+        @validator_attribute_keys = validator_attribute_keys
       end
 
-      attr_reader :validator_class
+      attr_reader :validator_class, :validator_attribute_keys
 
       def required_attributes(*attributes)
         @required_attributes = attributes
@@ -51,7 +52,7 @@ module Ucasy
     def validate!
       return if self.class.validator_class.blank?
 
-      validator = Validators::Validate.call(self.class.validator_class, context.to_h)
+      validator = Validators::Validate.call(self.class.validator_class, validator_attributes)
 
       if validator.valid?
         validator.to_context.each do |key, value|
@@ -60,6 +61,12 @@ module Ucasy
       else
         context.fail!(status: :unprocessable_entity, message: validator.message, errors: validator.errors)
       end
+    end
+
+    def validator_attributes
+      return context.to_h if self.class.validator_attribute_keys.blank?
+
+      context.to_h.slice(*self.class.validator_attribute_keys)
     end
 
     def validate_required_attributes!
