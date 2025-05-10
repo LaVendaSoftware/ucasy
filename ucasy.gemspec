@@ -28,4 +28,6 @@ Gem::Specification.new do |spec|
   spec.bindir = "exe"
   spec.executables = spec.files.grep(%r{\Aexe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
+  # https://github.com/ruby/ostruct?tab=readme-ov-file#usage
+  spec.add_dependency "ostruct", ">= 0"
 end
