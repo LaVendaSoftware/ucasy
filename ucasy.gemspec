@@ -1,4 +1,4 @@
-require_relative "lib/ucasy/version"
+require_relative "lib/ucasy"
 
 Gem::Specification.new do |spec|
   spec.name = "ucasy"

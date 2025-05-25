@@ -1,8 +1,3 @@
-require_relative "context"
-require_relative "failure"
-require_relative "validators/validate"
-require_relative "validators/required_attributes"
-
 module Ucasy
   class Base < Ucasy::Callable
     class << self
