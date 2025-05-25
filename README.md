@@ -4,10 +4,12 @@ Description soon!
 
 ## Installation
 
+### As gem dependence
+
 Add this line to your application's Gemfile:
 
 ```ru
-gem "ucasy", "~> 0.2.0"
+gem "ucasy", "~> 0.3.2"
 ```
 
 And then execute:
@@ -22,15 +24,39 @@ Or install it yourself as:
 bundle add ucasy
 ```
 
+### Copying files
+
+Add this line to your application's Gemfile:
+
+```ru
+group :development do
+  gem "ucasy", "~> 0.3.2", require: false
+end
+```
+
+And then execute:
+
+```bash
+bundle install
+```
+
+Or install it yourself as:
+
+```bash
+bundle add ucasy --require false --group development
+```
+
 ## Create base file
 
 You can use a Rails generator to create setup `UseCaseBase` file:
+
+### As gem dependence
 
 ```sh
 rails g ucasy:install
 ```
 
-This will create `app/use_cases/use_case_base.rb`
+This will only create `app/use_cases/use_case_base.rb`
 
 ```rb
 class UseCaseBase < Ucasy::Base
@@ -38,6 +64,15 @@ class UseCaseBase < Ucasy::Base
   end
 end
 ```
+
+And you need use ucasy gem as production dependence
+
+### Copying files
+
+```sh
+rails g ucasy:copy
+```
+This will copy all needed code to your rails application
 
 ## Basic usage
 
