@@ -15,13 +15,13 @@ gem "ucasy", "~> 0.3.2"
 And then execute:
 
 ```bash
-bundle install
+bin/bundle install
 ```
 
 Or install it yourself as:
 
 ```bash
-bundle add ucasy
+bin/bundle add ucasy
 ```
 
 ### Copying files
@@ -37,13 +37,13 @@ end
 And then execute:
 
 ```bash
-bundle install
+bin/bundle install
 ```
 
 Or install it yourself as:
 
 ```bash
-bundle add ucasy --require false --group development
+bin/bundle add ucasy --require false --group development
 ```
 
 ## Create base file
@@ -53,7 +53,7 @@ You can use a Rails generator to create setup `UseCaseBase` file:
 ### As gem dependence
 
 ```sh
-rails g ucasy:install
+bin/rails g ucasy:install
 ```
 
 This will only create `app/use_cases/use_case_base.rb`
@@ -70,9 +70,22 @@ And you need use ucasy gem as production dependence
 ### Copying files
 
 ```sh
-rails g ucasy:copy
+bin/rails g ucasy:copy
 ```
-This will copy all needed code to your rails application
+This will copy all needed code to your rails application:
+
+```
+  create  app/use_cases/use_case_base.rb
+  create  app/use_cases/ucasy
+  create  app/use_cases/ucasy/base.rb
+  create  app/use_cases/ucasy/callable.rb
+  create  app/use_cases/ucasy/context.rb
+  create  app/use_cases/ucasy/failure.rb
+  create  app/use_cases/ucasy/flow.rb
+  create  app/use_cases/ucasy/validators/required_attributes.rb
+  create  app/use_cases/ucasy/validators/validate.rb
+  create  app/use_cases/ucasy/version.rb
+```
 
 ## Basic usage
 
