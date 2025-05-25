@@ -1,7 +1,7 @@
 require_relative "ucasy/version"
 
 module Ucasy
-  Ucasy::DEFAULT_GENERATOR_FOLDER_NAME = "use_cases"
+  DEFAULT_GENERATOR_FOLDER_NAME = "use_cases"
 
   autoload :Callable, "ucasy/callable"
   autoload :Context, "ucasy/context"
