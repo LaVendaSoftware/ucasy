@@ -9,7 +9,7 @@ Description soon!
 Add this line to your application's Gemfile:
 
 ```ru
-gem "ucasy", "~> 0.3.2"
+gem "ucasy", "~> 0.3.3"
 ```
 
 And then execute:
@@ -30,7 +30,7 @@ Add this line to your application's Gemfile:
 
 ```ru
 group :development do
-  gem "ucasy", "~> 0.3.2", require: false
+  gem "ucasy", "~> 0.3.3", require: false
 end
 ```
 
