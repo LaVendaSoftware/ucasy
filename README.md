@@ -1,6 +1,6 @@
 # Ucasy
 
-Description soon!
+Ucasy is a lightweight Ruby gem that helps you structure and organize business logic in Rails applications using the service object pattern. It provides a simple framework for building, validating, and composing reusable “use cases,” supporting input validation, transactional flows, and clear separation of concerns. Ucasy makes it easy to manage complex application logic and ensure robust, maintainable code.
 
 ## Installation
 
@@ -192,7 +192,7 @@ end
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/ucasy.
+Bug reports and pull requests are welcome on GitHub at https://github.com/LaVendaSoftware/ucasy.
 
 ## License
 
